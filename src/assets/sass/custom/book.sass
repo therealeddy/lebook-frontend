@@ -1,0 +1,78 @@
+.book-single
+    width: 240px
+    height: 400px
+    background-color: $grayLight
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    margin-bottom: 50px
+    cursor: pointer
+    border-radius: 5px
+    @include transition(all .2s linear)
+    &:hover
+        .name
+            opacity: 1
+    .name
+        @include transition(all .4s linear)
+        font-size: 1.2rem
+        font-weight: 600
+        padding: 20px
+        color: $white
+        background-color: $black-3
+        text-align: center
+        opacity: 0
+        width: 100%
+        height: 100%
+        @include d-flex()
+        @include justify-content-center()
+        @include align-items-center()
+
+.modal-book
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    background-color: $black-3
+    z-index: 1000
+    @include transition(all .2s linear)
+    .modal-b-body
+        top: 50%
+        left: 50%
+        @include transform(translateY(-50%) translateX(-50%))
+        position: absolute
+        background-color: $black-2
+        width: 900px
+        height: 500px
+        border-radius: 5px
+        border: 2px solid $white
+        .image-book
+            width: 30%
+            background-position: center
+            background-size: cover
+            background-repeat: no-repeat
+        .infos
+            width: 70%
+            padding: 30px
+            color: $white
+            @include d-flex()
+            @include justify-content-between()
+            @include flex-column()
+            h2
+                margin-bottom: 30px
+            .top
+                .middle
+                    max-height: 280px
+                    overflow: scroll
+                    &::-webkit-scrollbar
+                        display: none !important
+        span
+            position: absolute
+            top: 15px
+            right: 15px
+            width: 15px
+            height: 15px
+            background-repeat: no-repeat
+            background-position: center
+            background-size: contain
+            cursor: pointer

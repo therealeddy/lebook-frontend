@@ -1,0 +1,14 @@
+yarn init -y
+yarn add express
+yarn add mongoose
+yarn add nodemon -D
+yarn add socket.io
+yarn add cors
+
+yarn global add create-react-app
+yarn global add react-native-cli
+
+create-react-app <name>
+yarn add react-router-dom
+yarn add axios
+yarn add socket.io client

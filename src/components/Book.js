@@ -4,12 +4,12 @@ import close from '../assets/images/close.png'
 export default function Book(props) {
 
     const [modal, setModal] = useState(false)
-
+    const [cloud, setCloud] = useState(process.env.CLOUD_FRONT_URL)
     const { book, author } = props
 
     const style = {
         photoBook: {
-            backgroundImage: `url('${book.image}')`,
+            backgroundImage: `url('${cloud}/${book.keyImage}')`,
         },
         close: {
             backgroundImage: `url('${close}')`,
@@ -84,7 +84,7 @@ export default function Book(props) {
                                 </div>
                             </div>
                             <div className="bottom">
-                                <a href={book.document} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Leia agora</a>
+                                <a href={`${cloud}/${book.keyDocument}`} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Leia agora</a>
                             </div>
                         </div>
                     </div>

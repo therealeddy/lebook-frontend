@@ -6,6 +6,7 @@ import api from '../services/api'
 export default function ListLivros(props) {
 
     const [books, setBooks] = useState([]);
+    const [urlCloud, setUrlCloud] = useState("");
 
     useEffect(() => {
         const fetchData = async e => {
@@ -22,6 +23,10 @@ export default function ListLivros(props) {
 
         fetchData()
     }, [props]);
+    
+    useEffect(() => {
+        setUrlCloud(process.env.REACT_APP_CLOUD_URL);
+    }, []);
 
     const handleDelete = async id => {
 
@@ -56,9 +61,9 @@ export default function ListLivros(props) {
                         books.length > 0 && (
                             books.map(book => (
                                 <tr key={book._id}>
-                                    <th><img src={book.image} height={40} alt="Livro"/></th>
+                                    <th><img src={`${urlCloud}/${book.keyImage}`} height={40} alt="Livro"/></th>
                                     <td>
-                                        <a href={book.document} target="_blank" rel="noopener noreferrer">
+                                        <a href={`${urlCloud}/${book.keyDocument}`} target="_blank" rel="noopener noreferrer">
                                             {book.name}
                                         </a>
                                     </td>

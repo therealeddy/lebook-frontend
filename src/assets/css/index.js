@@ -1,5 +1,11 @@
-body {
-  background-color: #151515;
+import { createGlobalStyle } from "styled-components";
+
+export default createGlobalStyle`
+
+  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+
+  body {
+  background-color: #ffffff;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important; }
@@ -10,9 +16,6 @@ body {
 
 table {
   background-color: #ffffff !important; }
-
-h1, h2, h3, h4, h5, h6, label {
-  color: #ffffff; }
 
 textarea {
   height: 150px !important; }
@@ -42,21 +45,6 @@ input.input-file {
     outline: 0; }
   input.input-file:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); }
-
-.form-login, .form-register {
-  height: 100vh;
-  width: 100%;
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-box-pack: center !important;
-  -ms-flex-pack: center !important;
-  justify-content: center !important;
-  -webkit-box-align: center !important;
-  -ms-flex-align: center !important;
-  align-items: center !important; }
-  .form-login img, .form-register img {
-    width: 100%; }
 
 .book-single {
   width: 240px;
@@ -160,3 +148,5 @@ input.input-file {
       background-position: center;
       background-size: contain;
       cursor: pointer; }
+
+`;

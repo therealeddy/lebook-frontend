@@ -1,50 +1,72 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import Logo from '../assets/images/logo.png'
-import api from '../services/api'
+import React, { useState, useEffect } from "react";
+import api from "../services/api";
+import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
+import { Form } from "@rocketseat/unform";
 
 export default function Login(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  // useEffect(() => {
+  //   if (localStorage.getItem("@Login:username")) {
+  //     props.history.push("/browse");
+  //   }
+  // }, [props]);
 
-  useEffect(() => {
+  // const handleLogar = () => {
+  //   if (username === "" || password === "") {
+  //     alert("Preencha todos os campos");
+  //     return;
+  //   }
 
-    if(localStorage.getItem('@Login:username')){
-      props.history.push('/browse')
-    }
+  //   handleLogin();
+  // };
 
-  }, [props])
+  // const handleLogin = async e => {
+  //   const user = await api.get(`/users/${username}/${password}`);
 
-  const handleLogar = () => {
-    if(username === '' || password === ''){
-      alert('Preencha todos os campos')
-      return
-    }
+  //   if (!user.data[0]) {
+  //     alert("Usuario nao encontrado");
+  //     return;
+  //   }
 
-    handleLogin()
-  }
-  
-  const handleLogin = async e => {
+  //   localStorage.setItem("@Login:username", user.data[0].username);
 
-    const user =  await api.get(`/users/${username}/${password}`)
+  //   props.history.push("/browse");
+  // };
 
-    if(!user.data[0]){
-      alert('Usuario nao encontrado')
-      return
-    }
-
-    localStorage.setItem('@Login:username', user.data[0].username)
-
-    props.history.push('/browse')
-    
+  function handleSubmit(data) {
+    console.log(data);
   }
 
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
         <div className="col-md-4">
-          <div className="form-login">
+          <Form onSubmit={handleSubmit}>
+            <FormControl>
+              <InputLabel htmlFor="username">Username</InputLabel>
+              <Input
+                id="username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              />
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                id="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
+            </FormControl>
+
+            <Button variant="contained" color="secondary">
+              Login
+            </Button>
+          </Form>
+
+          {/* <div className="form-login">
             <div>
               <img src={Logo} alt="Lebook" className="mb-5"/>
 
@@ -71,7 +93,7 @@ export default function Login(props) {
                 <Link to="/register" className="btn btn-success">Cadastrar</Link>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

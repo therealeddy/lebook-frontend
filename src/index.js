@@ -1,10 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import Routes from "./routes";
 
-import './assets/css/bootstrap.min.css';
-import './assets/css/style.css';
-import 'react-circular-progressbar/dist/styles.css'
-
-import Routes from './routes';
-
-ReactDOM.render(<Routes />, document.getElementById('root'));
+ReactDOM.render(<Routes />, document.getElementById("root"));

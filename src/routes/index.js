@@ -1,21 +1,14 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import GlobalStyle from "../assets/css/";
-import "react-circular-progressbar/dist/styles.css";
-
-import Login from "../pages/Login/";
-import Register from "../pages/Register/";
-import Browse from "../pages/Browse";
+import React from 'react';
+import { Switch } from 'react-router-dom';
+import Route from './Route';
+import { Main, Login, Register } from 'App/pages';
 
 export default function Routes() {
   return (
-    <BrowserRouter>
-      <GlobalStyle />
-      <Switch>
-        <Route path="/" exact component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/browse" component={Browse} />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/" exact component={Main} />
+      <Route path="/login" isPrivate={false} component={Login} />
+      <Route path="/register" isPrivate={false} component={Register} />
+    </Switch>
   );
 }

@@ -53,6 +53,8 @@ export default function Login(props) {
         password: !password
       });
 
+      toast('Preencha todos os campos!', 'warn');
+
       return;
     } else {
       setError({ username: false, password: false });

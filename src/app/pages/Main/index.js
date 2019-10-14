@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Logo } from '~/assets/images';
-import api from '~/services/api';
-import Route from '~/routes/Route';
-import { Timeline } from '~/app/pages';
+// import Route from '~/routes/Route';
+// import { Timeline } from '~/app/pages';
 
 export default function Main(props) {
   const [buttonBooks, setButtonBooks] = useState(false);
 
   useEffect(() => {
-    const fetchData = async e => {
-      const user = await api.get(
-        `/users/${localStorage.getItem('@Login:username')}`
-      );
+    const user = JSON.parse(localStorage.getItem('@Lebook:TOKEN'));
 
-      if (user.data[0].type === 'author') setButtonBooks(true);
-    };
-
-    fetchData();
-  }, [props]);
+    if (user.role === 'author') setButtonBooks(true);
+  }, []);
 
   const handleExit = () => {
-    localStorage.removeItem('@Login:username');
+    localStorage.removeItem('@Lebook:TOKEN');
     props.history.push('/');
   };
 
@@ -44,9 +37,9 @@ export default function Main(props) {
         </div>
       </div>
 
-      <Switch>
+      {/* <Switch>
         <Route path="/" exact component={Timeline} />
-      </Switch>
+      </Switch> */}
     </React.Fragment>
   );
 }

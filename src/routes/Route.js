@@ -7,7 +7,7 @@ export default function RouteWrapper({
   isPrivate,
   ...rest
 }) {
-  const logged = !!localStorage.getItem('@Login:username');
+  const logged = !!localStorage.getItem('@Lebook:TOKEN');
 
   if (!logged && isPrivate) {
     return <Redirect to="/login" />;

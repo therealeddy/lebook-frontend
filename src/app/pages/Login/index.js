@@ -32,14 +32,16 @@ export default function Login(props) {
   }
 
   const handleLogin = async e => {
-    const user = await api.get(`/users/${username}/${password}`);
+    const user = await api.get(`/authentication/${username}/${password}`);
 
     if (!user.data[0]) {
-      toast('Usuário não encontrado !', 'error');
+      toast('User not found!', 'error');
       return;
     }
 
-    localStorage.setItem('@Login:username', user.data[0].username);
+    localStorage.setItem('@Lebook:TOKEN', JSON.stringify(user.data[0]));
+
+    toast('Welcome! =D', 'success');
 
     props.history.push('/');
   };
@@ -53,7 +55,7 @@ export default function Login(props) {
         password: !password
       });
 
-      toast('Preencha todos os campos!', 'warn');
+      toast('Fill in all fields!', 'warn');
 
       return;
     } else {

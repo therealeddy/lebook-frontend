@@ -30,14 +30,14 @@ export default function Register(props) {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [type, setType] = useState('');
+  const [role, setRole] = useState('');
 
   const [error, setError] = useState({
     password: false,
     username: false,
     name: false,
     passwordConfirm: false,
-    type: false
+    role: false
   });
 
   const classes = useStyles();
@@ -47,11 +47,11 @@ export default function Register(props) {
     dispatch(setToast(notify, type));
   }
 
-  const handleNewAuthor = async e => {
+  const handleCreateUser = async e => {
     const exist = await api.get(`/users/${username}`);
 
     if (exist.data[0]) {
-      toast('Usuário já existente!', 'error');
+      toast('User already exist!', 'error');
       return;
     }
 
@@ -59,42 +59,52 @@ export default function Register(props) {
       username,
       name,
       password,
-      type
+      role
     });
 
     if (result.data) {
-      toast('Usuário cadastrado, faça o login!', 'success');
+      toast('User successfully registered!', 'success');
       props.history.push('/login');
     } else {
-      toast('Ocorreu algum erro, tente novamente mais tarde! :(', 'error');
+      toast('An error has occurred, please try again!', 'error');
     }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (!username || !password || !name || !passwordConfirm || !type) {
+    if (!username || !password || !name || !passwordConfirm || !role) {
       setError({
         username: !username,
         password: !password,
         name: !name,
         passwordConfirm: !passwordConfirm,
-        type: !type
+        role: !role
       });
 
-      toast('Preencha todos os campos!', 'warn');
+      toast('Fill in all fields!', 'warn');
 
       return;
     } else {
-      setError({
-        password: false,
-        username: false,
-        name: false,
-        passwordConfirm: false,
-        type: false
-      });
+      if (password !== passwordConfirm) {
+        setError({
+          ...error,
+          password: true,
+          passwordConfirm: true
+        });
 
-      handleNewAuthor();
+        toast('Passwords do not match!', 'warn');
+      } else {
+        setError({
+          password: false,
+          username: false,
+          name: false,
+          passwordConfirm: false,
+          role: false
+        });
+
+        handleCreateUser();
+      }
     }
   };
 
@@ -110,8 +120,8 @@ export default function Register(props) {
                   <RadioGroup
                     aria-label="gender"
                     name="gender1"
-                    value={type}
-                    onChange={e => setType(e.target.value)}
+                    value={role}
+                    onChange={e => setRole(e.target.value)}
                   >
                     <div className="d-flex">
                       <FormControlLabel
@@ -120,7 +130,7 @@ export default function Register(props) {
                         label="Author"
                       />
                       <FormControlLabel
-                        value="leitor"
+                        value="reader"
                         control={<Radio />}
                         label="Reader"
                       />
@@ -131,7 +141,6 @@ export default function Register(props) {
                   <FormControl>
                     <InputLabel htmlFor="username">Username</InputLabel>
                     <Input
-                      id="username"
                       error={error.username}
                       value={username}
                       onChange={e => setUsername(e.target.value)}
@@ -142,7 +151,6 @@ export default function Register(props) {
                   <FormControl>
                     <InputLabel htmlFor="username">Name</InputLabel>
                     <Input
-                      id="username"
                       error={error.name}
                       value={name}
                       onChange={e => setName(e.target.value)}
@@ -153,7 +161,6 @@ export default function Register(props) {
                   <FormControl>
                     <InputLabel htmlFor="password">Password</InputLabel>
                     <Input
-                      id="password"
                       error={error.password}
                       value={password}
                       type="password"
@@ -166,7 +173,6 @@ export default function Register(props) {
                   <FormControl>
                     <InputLabel htmlFor="password">Confirm Password</InputLabel>
                     <Input
-                      id="password"
                       error={error.passwordConfirm}
                       value={passwordConfirm}
                       type="password"

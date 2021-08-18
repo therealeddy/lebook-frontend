@@ -15,7 +15,7 @@
 
 ## Overview
 
-An ebook platform, developed in ReactJS.
+An ebook platform, developed in React.
 
 - **[Author](#author)**
 - **[License](#license)**

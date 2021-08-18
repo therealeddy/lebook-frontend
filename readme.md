@@ -1,12 +1,12 @@
 <h1 align="center">
-  🚀 Lebook Front-End 🚀
+ 💻 Lebook Frontend 💻
 </h1>
 
 <br>
 
 <div align="center">
 
-[![version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/therealeddy/lebook-frontend/releases)<space><space>
+[![version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/therealeddy/lebook-frontend/releases)<space><space>
 [![documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](#overview)
 
 </div>
@@ -15,7 +15,7 @@
 
 ## Overview
 
-An ebook platform, developed in ReactJS.
+An ebook platform, developed in React.
 
 - **[Author](#author)**
 - **[License](#license)**
